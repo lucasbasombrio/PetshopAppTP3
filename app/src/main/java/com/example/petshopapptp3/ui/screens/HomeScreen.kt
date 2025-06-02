@@ -8,16 +8,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.ui.unit.dp
+
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(32.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Pantalla: Login",
+            text = "Pantalla: Home",
             style = MaterialTheme.typography.headlineSmall
         )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // 🔧 Botón de prueba para vos
+        Button(onClick = { navController.navigate("profile") }) {
+            Text("Ir a pantalla de perfil")
+        }
     }
 }
