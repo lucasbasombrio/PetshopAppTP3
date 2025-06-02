@@ -1,12 +1,10 @@
 package com.example.petshopapptp3.ui.screens
 
-
-import androidx.compose.foundation.border
+import androidx.compose.foundation.Image
+import com.example.petshopapptp3.R
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -16,7 +14,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.*
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,7 +22,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.petshopapptp3.ui.theme.PetshopAppTP3Theme
 import com.example.petshopapptp3.ui.theme.Poppins
 import com.example.petshopapptp3.ui.components.CustomTopBar
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.ui.res.painterResource
 
 @Composable
@@ -114,33 +110,21 @@ fun AddNewPaymentScreen(navController: NavController) {
                 keyboardType = KeyboardType.NumberPassword,
                 visualTransformation = PasswordVisualTransformation()
             )
-//Se crea el icono de error para el campo CVV
+
 
             if (isCVVError) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(start = 4.dp, top = 4.dp)
                 ) {
-                    Box(
+                    Image(
+                        painter = painterResource(id = R.drawable.req),
+                        contentDescription = "Error icon",
                         modifier = Modifier
-                            .size(20.dp)
-                            .border(width = 1.dp, color =  MaterialTheme.colorScheme.error, shape = RoundedCornerShape(4.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "i",
-                            color =  MaterialTheme.colorScheme.error,
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = "Required Fields",
-                        color = MaterialTheme.colorScheme.error,
-                        fontSize = 12.sp,
-                        fontFamily = Poppins
+                            .padding(top = 15.dp)
+                            .size(width = 117.dp, height = 19.dp)
                     )
+                    Spacer(modifier = Modifier.width(6.dp))
                 }
             }
 
@@ -180,8 +164,6 @@ fun AddNewPaymentScreen(navController: NavController) {
 }
 
 
-
-
 @Composable
 fun PaymentTextField(
     value: String,
@@ -191,6 +173,7 @@ fun PaymentTextField(
     keyboardType: KeyboardType,
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
+    val errorRed = Color(0xFFFF4D4F)
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
@@ -219,12 +202,11 @@ fun PaymentTextField(
             focusedBorderColor = MaterialTheme.colorScheme.primary,
             focusedLabelColor = MaterialTheme.colorScheme.primary,
             unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-            errorBorderColor = MaterialTheme.colorScheme.error,
-            errorLabelColor = MaterialTheme.colorScheme.error,
+            errorBorderColor = errorRed,
+            errorLabelColor = errorRed,
             cursorColor = MaterialTheme.colorScheme.primary,
             focusedTextColor = MaterialTheme.colorScheme.primary,
             unfocusedTextColor = MaterialTheme.colorScheme.primary,
-            errorTextColor = MaterialTheme.colorScheme.error
         )
     )
 }

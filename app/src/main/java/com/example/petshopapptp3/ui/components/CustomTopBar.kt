@@ -1,8 +1,6 @@
 package com.example.petshopapptp3.ui.components
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,6 +10,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petshopapptp3.ui.theme.Poppins
+import androidx.compose.foundation.Image
+import androidx.compose.ui.draw.shadow
+import com.example.petshopapptp3.R
+import androidx.compose.ui.res.painterResource
+
+
 
 @Composable
 fun CustomTopBar(
@@ -21,8 +25,8 @@ fun CustomTopBar(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 24.dp, bottom = 8.dp)
-            .height(56.dp),
+            .padding(top = 60.dp)
+            .height(46.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -33,17 +37,26 @@ fun CustomTopBar(
             color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center
         )
-
         IconButton(
             onClick = onBackClick,
-            modifier = Modifier.align(Alignment.CenterStart)
+            modifier = Modifier
+                .size(56.dp)
+                .width(46.dp)
+                .height(46.dp)
+                .align(Alignment.TopStart)
+                .offset(x = 24.dp)
+
         ) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
+            Image(
+                painter = painterResource(id = R.drawable.back),
                 contentDescription = "Back",
-                tint = MaterialTheme.colorScheme.onBackground
+                modifier = Modifier.size(56.dp)
+                    .width(46.dp)
+                    .height(46.dp)
             )
         }
+
+
     }
 }
 
