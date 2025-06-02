@@ -85,6 +85,15 @@ fun ModeButton(text: String, selected: Boolean, onClick: () -> Unit) {
 
 @Composable
 fun SellerModeUI() {
+    var sellerProducts by remember { mutableStateOf<List<Product>>(emptyList()) }
+    val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        coroutineScope.launch {
+            sellerProducts = ProductService.getProducts()
+        }
+    }
+
     Image(
         painter = painterResource(id = R.drawable.bg_profile_seller),
         contentDescription = null,
@@ -129,7 +138,21 @@ fun SellerModeUI() {
         FilterButton("Sold", false)
         FilterButton("Stats", false)
     }
+
+    LazyRow(
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        items(sellerProducts) { product ->
+            ProductCard(
+                title = product.title,
+                price = "$${product.price}",
+                imageUrl = product.thumbnail
+            )
+        }
+    }
 }
+
 
 @Composable
 fun UserModeUI() {
