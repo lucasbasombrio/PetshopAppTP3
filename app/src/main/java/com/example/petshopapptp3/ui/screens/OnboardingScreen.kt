@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.compose.material3.Button
 
 @Composable
 fun OnboardingScreen(navController: NavHostController) {
@@ -19,5 +20,6 @@ fun OnboardingScreen(navController: NavHostController) {
             text = "Pantalla: Login",
             style = MaterialTheme.typography.headlineSmall
         )
+
     }
 }

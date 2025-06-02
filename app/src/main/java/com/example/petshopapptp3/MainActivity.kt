@@ -12,6 +12,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
 import com.example.petshopapptp3.ui.screens.AccountSettingsScreen
+import com.example.petshopapptp3.ui.screens.AddNewPaymentScreen
 import com.example.petshopapptp3.ui.screens.CartScreen
 import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 import com.example.petshopapptp3.ui.screens.ChangePasswordScreen
@@ -61,6 +62,7 @@ fun AppNavigation() {
             ProductDetailScreen(navController)
         }
         composable("cart") { CartScreen(navController) }
+        composable("addPayment") { AddNewPaymentScreen(navController) }
         composable("checkout") { CheckoutScreen(navController) }
         composable("paymentSuccess") { PaymentSuccessScreen(navController) }
         composable("profile") { ProfileScreen(navController) }
