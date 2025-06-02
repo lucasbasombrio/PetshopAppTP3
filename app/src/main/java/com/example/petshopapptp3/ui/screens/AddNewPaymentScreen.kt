@@ -147,14 +147,14 @@ fun AddNewPaymentScreen(navController: NavController) {
                         Color(0xFF7140FD)
                     else
                         Color(0xFFE5E4E3),
-                    contentColor = Color.White
                 )
             ) {
                 Text(
                     text = "Save",
                     fontFamily = Poppins,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = Color.White
                 )
             }
 
@@ -174,7 +174,7 @@ fun PaymentTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     val errorRed = Color(0xFFFF4D4F)
-    val unfocusedGrey = Color (0xB3B1B0)
+
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,

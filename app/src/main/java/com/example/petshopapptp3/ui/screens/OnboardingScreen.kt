@@ -20,11 +20,7 @@ fun OnboardingScreen(navController: NavHostController) {
             text = "Pantalla: Login",
             style = MaterialTheme.typography.headlineSmall
         )
-        Button(
-            onClick = { navController.navigate("addPayment") }
-        ) {
-            Text(text = "Ir a Home")
-        }
+
 
     }
 }

@@ -100,7 +100,8 @@ fun CheckoutScreen(navController: NavController) {
                         fontFamily = Poppins,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        color = Color.White
                     )
                 }
 
