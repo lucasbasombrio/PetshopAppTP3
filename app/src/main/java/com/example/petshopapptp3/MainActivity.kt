@@ -28,6 +28,7 @@ import com.example.petshopapptp3.ui.screens.SecuritySettingsScreen
 import com.example.petshopapptp3.ui.theme.PetshopAppTP3Theme
 import com.example.petshopapptp3.ui.screens.NotificationsScreen
 import com.example.petshopapptp3.ui.screens.SearchScreen
+import com.example.petshopapptp3.ui.screens.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,6 +57,10 @@ fun AppNavigation() {
         composable("register") { RegisterScreen(navController) }
         composable("forgotPassword") { ForgotPasswordScreen(navController) }
         composable("home") { HomeScreen(navController) }
+        composable("settings") {
+            SettingsScreen(navController)
+        }
+
         composable(
             route = "product/{productId}",
             arguments = listOf(navArgument("productId") { type = NavType.StringType })

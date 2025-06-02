@@ -59,11 +59,10 @@ fun ProfileScreen(navController: NavHostController) {
         if (isSellerMode) {
             SellerModeUI()
         } else {
-            UserModeUI()
+            UserModeUI(navController)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        BottomBar()
     }
 }
 
@@ -153,9 +152,8 @@ fun SellerModeUI() {
     }
 }
 
-
 @Composable
-fun UserModeUI() {
+fun UserModeUI(navController: NavHostController) {
     var savedProducts by remember { mutableStateOf<List<Product>>(emptyList()) }
     val coroutineScope = rememberCoroutineScope()
 
@@ -194,7 +192,17 @@ fun UserModeUI() {
     Spacer(modifier = Modifier.height(16.dp))
     Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
         FilterButton("Saved", true)
-        FilterButton("Edit Profile", false)
+        Button(
+            onClick = { navController.navigate("settings") },
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFE0E0E0),
+                contentColor = Color(0xFF666666)
+            ),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp)
+        ) {
+            Text(text = "Edit Profile", fontSize = 14.sp)
+        }
     }
 
     LazyRow(
@@ -209,8 +217,9 @@ fun UserModeUI() {
             )
         }
     }
-}
 
+    BottomBar()
+}
 
 @Composable
 fun ProductCard(title: String, price: String, imageUrl: String) {
