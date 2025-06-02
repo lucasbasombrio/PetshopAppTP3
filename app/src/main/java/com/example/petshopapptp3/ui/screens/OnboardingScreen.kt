@@ -9,18 +9,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun OnboardingScreen(navController: NavHostController) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Pantalla: Login",
-            style = MaterialTheme.typography.headlineSmall
-        )
+    )  {
+            Text(
+                text = "Pantalla: Login",
+                style = MaterialTheme.typography.headlineSmall
+            )
 
 
     }
+
+
+
+
 }

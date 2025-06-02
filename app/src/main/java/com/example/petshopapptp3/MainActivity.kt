@@ -14,7 +14,7 @@ import androidx.navigation.navArgument
 import com.example.petshopapptp3.ui.screens.AccountSettingsScreen
 import com.example.petshopapptp3.ui.screens.AddNewPaymentScreen
 import com.example.petshopapptp3.ui.screens.CartScreen
-import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
+//import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 import com.example.petshopapptp3.ui.screens.ChangePasswordScreen
 import com.example.petshopapptp3.ui.screens.CheckoutScreen
 import com.example.petshopapptp3.ui.screens.ForgotPasswordScreen
@@ -28,6 +28,7 @@ import com.example.petshopapptp3.ui.screens.RegisterScreen
 import com.example.petshopapptp3.ui.screens.SecuritySettingsScreen
 import com.example.petshopapptp3.ui.theme.PetshopAppTP3Theme
 import dagger.hilt.android.AndroidEntryPoint
+import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

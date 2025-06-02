@@ -11,9 +11,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.petshopapptp3.ui.theme.Poppins
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.shadow
 import com.example.petshopapptp3.R
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color
 
 
 
@@ -40,21 +43,20 @@ fun CustomTopBar(
         IconButton(
             onClick = onBackClick,
             modifier = Modifier
-                .size(56.dp)
-                .width(46.dp)
-                .height(46.dp)
+                .size(100.dp)
                 .align(Alignment.TopStart)
-                .offset(x = 24.dp)
+                .offset(x = -10.dp)
 
         ) {
             Image(
                 painter = painterResource(id = R.drawable.back),
                 contentDescription = "Back",
-                modifier = Modifier.size(56.dp)
-                    .width(46.dp)
-                    .height(46.dp)
+                modifier = Modifier.size(100.dp)
+
             )
         }
+
+
 
 
     }
