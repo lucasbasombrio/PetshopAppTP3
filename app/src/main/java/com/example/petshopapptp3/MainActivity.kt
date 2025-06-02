@@ -26,6 +26,8 @@ import com.example.petshopapptp3.ui.screens.ProfileScreen
 import com.example.petshopapptp3.ui.screens.RegisterScreen
 import com.example.petshopapptp3.ui.screens.SecuritySettingsScreen
 import com.example.petshopapptp3.ui.theme.PetshopAppTP3Theme
+import com.example.petshopapptp3.ui.screens.NotificationsScreen
+import com.example.petshopapptp3.ui.screens.SearchScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -68,5 +70,11 @@ fun AppNavigation() {
         composable("securitySettings") { SecuritySettingsScreen(navController) }
         composable("changePassword") { ChangePasswordScreen(navController) }
         composable("changeEmail") { ChangeEmailScreen(navController) }
+        composable("notifications") {
+            NotificationsScreen(onBack = { navController.popBackStack() })
+        }
+        composable("search") {
+            SearchScreen(onBack = { navController.popBackStack() })
+        }
     }
 }

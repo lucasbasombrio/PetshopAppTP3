@@ -284,4 +284,3 @@ fun BottomBar() {
         }
     }
 }
-
