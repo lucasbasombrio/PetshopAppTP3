@@ -144,9 +144,9 @@ fun AddNewPaymentScreen(navController: NavController) {
                 shape = RoundedCornerShape(50),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (isFormValid)
-                        MaterialTheme.colorScheme.primary
+                        Color(0xFF7140FD)
                     else
-                        MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f),
+                        Color(0xFFE5E4E3),
                     contentColor = Color.White
                 )
             ) {
@@ -174,6 +174,7 @@ fun PaymentTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     val errorRed = Color(0xFFFF4D4F)
+    val unfocusedGrey = Color (0xB3B1B0)
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
@@ -199,14 +200,14 @@ fun PaymentTextField(
             .padding(vertical = 2.dp),
         shape = RoundedCornerShape(12.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            focusedLabelColor = MaterialTheme.colorScheme.primary,
+            focusedBorderColor = Color(0xFF7140FD),
+            focusedLabelColor = Color(0xFF7140FD),
             unfocusedBorderColor = MaterialTheme.colorScheme.outline,
             errorBorderColor = errorRed,
             errorLabelColor = errorRed,
-            cursorColor = MaterialTheme.colorScheme.primary,
-            focusedTextColor = MaterialTheme.colorScheme.primary,
-            unfocusedTextColor = MaterialTheme.colorScheme.primary,
+            cursorColor = Color(0xFF7140FD),
+            focusedTextColor = Color(0xFF7140FD),
+            unfocusedTextColor = Color(0xFF7140FD),
         )
     )
 }

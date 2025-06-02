@@ -89,9 +89,9 @@ fun CheckoutScreen(navController: NavController) {
                     shape = RoundedCornerShape(50),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = if (selectedMethod != null)
-                            MaterialTheme.colorScheme.primary
+                            Color(0xFF7140FD)
                         else
-                            MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f),
+                            Color(0xFFE5E4E3),
                         contentColor = Color.White
                     )
                 ) {
@@ -117,8 +117,8 @@ fun PaymentOptionCard(
     selected: Boolean,
     onSelect: () -> Unit
 ) {
-    val borderColor = if (selected) MaterialTheme.colorScheme.primary else Color.LightGray
-    val textColor = if (selected) MaterialTheme.colorScheme.primary else Color.Gray
+    val borderColor = if (selected) Color(0xFF7140FD) else Color.LightGray
+    val textColor = if (selected) Color(0xFF7140FD) else Color.Gray
 
     Row(
         modifier = Modifier
@@ -150,7 +150,7 @@ fun PaymentOptionCard(
 //Botón circular personalizado para seleccionar el método de pago
 @Composable
 fun CustomRadioButton(selected: Boolean, onClick: () -> Unit) {
-    val borderColor = if (selected) MaterialTheme.colorScheme.primary else Color.Gray
+    val borderColor = if (selected) Color(0xFF7140FD) else Color.Gray
     val borderWidth = if (selected) 4.dp else 1.dp
     val outerSize = 24.dp
 

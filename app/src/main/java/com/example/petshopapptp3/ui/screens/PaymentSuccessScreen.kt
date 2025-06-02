@@ -59,7 +59,11 @@ fun PaymentSuccessScreen(navController: NavController? = null) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp),
-                shape = RoundedCornerShape(50)
+                shape = RoundedCornerShape(50),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF7140FD),
+                    contentColor = Color.White
+            )
             ) {
                 Text(
                     text = "Go Home",
