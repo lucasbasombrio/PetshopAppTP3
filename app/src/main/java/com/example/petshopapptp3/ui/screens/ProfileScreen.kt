@@ -1,3 +1,4 @@
+// ProfileScreen.kt
 package com.example.petshopapptp3.ui.screens
 
 import androidx.compose.foundation.Image
@@ -163,28 +164,7 @@ fun UserModeUI(navController: NavHostController) {
         }
     }
 
-    Image(
-        painter = painterResource(id = R.drawable.bg_profile_user),
-        contentDescription = null,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(140.dp)
-    )
-
-    Box(
-        modifier = Modifier
-            .offset(y = (-40).dp)
-            .size(100.dp)
-            .clip(CircleShape)
-            .background(Color.LightGray),
-        contentAlignment = Alignment.Center
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.img_avatar),
-            contentDescription = "User Avatar",
-            modifier = Modifier.size(100.dp)
-        )
-    }
+    UserBanner()
 
     Spacer(modifier = Modifier.height(8.dp))
     Text(text = "Abduldul", fontWeight = FontWeight.Bold, fontSize = 20.sp)
@@ -219,6 +199,32 @@ fun UserModeUI(navController: NavHostController) {
     }
 
     BottomBar()
+}
+
+@Composable
+fun UserBanner() {
+    Image(
+        painter = painterResource(id = R.drawable.bg_profile_user),
+        contentDescription = null,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(140.dp)
+    )
+
+    Box(
+        modifier = Modifier
+            .offset(y = (-40).dp)
+            .size(100.dp)
+            .clip(CircleShape)
+            .background(Color.LightGray),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.img_avatar),
+            contentDescription = "User Avatar",
+            modifier = Modifier.size(100.dp)
+        )
+    }
 }
 
 @Composable

@@ -42,7 +42,7 @@ fun SettingsScreen(navController: NavHostController) {
 
         Text(text = "Account", fontWeight = FontWeight.Bold, fontSize = 16.sp)
 
-        SettingsItem("Account", Icons.Default.Person) { /* navController.navigate("account") */ }
+        SettingsItem("Account", Icons.Default.Person) { navController.navigate("account_settings") }
         SettingsItem("Address", Icons.Default.Home) { /* navController.navigate("address") */ }
         SettingsItem("Notification", Icons.Default.Notifications) { /* navController.navigate("notifications") */ }
         //SettingsItem("Payment Method", Icons.Default.Payment) { /* navController.navigate("payment") */ }

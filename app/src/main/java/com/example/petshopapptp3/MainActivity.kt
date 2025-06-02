@@ -60,6 +60,9 @@ fun AppNavigation() {
         composable("settings") {
             SettingsScreen(navController)
         }
+        composable("account_settings") {
+            AccountSettingsScreen(navController)
+        }
 
         composable(
             route = "product/{productId}",
