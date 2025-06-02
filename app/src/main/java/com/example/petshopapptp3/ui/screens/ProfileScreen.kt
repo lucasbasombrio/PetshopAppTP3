@@ -73,8 +73,8 @@ fun ModeButton(text: String, selected: Boolean, onClick: () -> Unit) {
         onClick = onClick,
         shape = RoundedCornerShape(50),
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (selected) Color(0xFF9B59B6) else Color(0xFFE0E0E0),
-            contentColor = Color.Black
+            containerColor = if (selected) Color(0xFF814DFF) else Color(0xFFE0E0E0),
+            contentColor = if (selected) Color.White else Color(0xFF666666)
         ),
         contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
         modifier = Modifier.defaultMinSize(minHeight = 1.dp)
@@ -250,8 +250,8 @@ fun FilterButton(text: String, selected: Boolean) {
         onClick = { },
         shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (selected) Color(0xFF9B59B6) else Color(0xFFE0E0E0),
-            contentColor = Color.Black
+            containerColor = if (selected) Color(0xFF814DFF) else Color(0xFFE0E0E0),
+            contentColor = if (selected) Color.White else Color(0xFF666666)
         ),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp)
     ) {
