@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.kapt)
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -65,6 +66,16 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
+    //Kotor
+    implementation("io.ktor:ktor-client-core:2.0.0")
+    implementation("io.ktor:ktor-client-cio:2.0.0")
+    implementation("io.ktor:ktor-client-content-negotiation:2.0.0")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
