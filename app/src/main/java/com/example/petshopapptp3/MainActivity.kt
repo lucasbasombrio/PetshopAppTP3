@@ -27,6 +27,7 @@ import com.example.petshopapptp3.ui.screens.RegisterScreen
 import com.example.petshopapptp3.ui.screens.SecuritySettingsScreen
 import com.example.petshopapptp3.ui.theme.PetshopAppTP3Theme
 import com.example.petshopapptp3.ui.screens.NotificationsScreen
+import com.example.petshopapptp3.ui.screens.NotificationsSettingsScreen
 import com.example.petshopapptp3.ui.screens.SearchScreen
 import com.example.petshopapptp3.ui.screens.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,6 +63,9 @@ fun AppNavigation() {
         }
         composable("account_settings") {
             AccountSettingsScreen(navController)
+        }
+        composable("notifications_settings") {
+            NotificationsSettingsScreen(navController)
         }
 
         composable(

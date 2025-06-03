@@ -44,7 +44,8 @@ fun SettingsScreen(navController: NavHostController) {
 
         SettingsItem("Account", Icons.Default.Person) { navController.navigate("account_settings") }
         SettingsItem("Address", Icons.Default.Home) { /* navController.navigate("address") */ }
-        SettingsItem("Notification", Icons.Default.Notifications) { /* navController.navigate("notifications") */ }
+        SettingsItem("Notification", Icons.Default.Notifications) { navController.navigate("notifications_settings") }
+
         //SettingsItem("Payment Method", Icons.Default.Payment) { /* navController.navigate("payment") */ }
         SettingsItem("Privacy", Icons.Default.Info) { /* navController.navigate("privacy") */ }
         SettingsItem("Security", Icons.Default.Lock) { /* navController.navigate("security") */ }
