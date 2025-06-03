@@ -273,7 +273,7 @@ fun HomeScreen(navController: NavHostController) {
                         modifier = Modifier
                             .width(150.dp)
                             .clip(RoundedCornerShape(12.dp))
-                            .background(Color.White)
+                            .background(Color(0xFFF8F8F8))
                             .padding(8.dp)
                     ) {
                         Image(
