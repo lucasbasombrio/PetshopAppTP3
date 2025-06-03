@@ -35,72 +35,71 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun LoginScreen(navController: NavController) {
-    var email by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var emailError by remember { mutableStateOf(false) }
+    var usernameError by remember { mutableStateOf(false) }
     var passwordError by remember { mutableStateOf(false) }
 
     LoginScreen(
-        email = email,
+        username = username,
         password = password,
-        onEmailChange = {
-            email = it
-            emailError = false
+        onUsernameChange = {
+            username = it
+            usernameError = false
         },
         onPasswordChange = {
             password = it
             passwordError = false
         },
         onLoginClick = {
-            emailError = email.isBlank()
+            usernameError = username.isBlank()
             passwordError = password.isBlank()
 
-            if (email.isNotBlank() && password.isNotBlank()) {
+            if (username.isNotBlank() && password.isNotBlank()) {
                 CoroutineScope(Dispatchers.IO).launch {
                     val response = try {
-                        RetrofitClient.authService.login(LoginRequest(email, password))
+                        RetrofitClient.authService.login(LoginRequest(username, password))
                     } catch (e: Exception) {
                         null
                     }
 
                     withContext(Dispatchers.Main) {
                         if (response != null && response.isSuccessful) {
-                            // Navegación a home si el login fue exitoso
+                            Log.d("LoginResponse", response.body()?.toString() ?: "null response")
                             navController.navigate("home") {
                                 popUpTo("login") { inclusive = true }
-                                Log.d("LoginResponse", response?.body()?.toString() ?: "null response")
                             }
                         } else {
-                            emailError = true
+                            usernameError = true
                             passwordError = true
-                            Log.d("LoginResponse", response?.body()?.toString() ?: "null response")
+                            Log.d("LoginResponse", response?.errorBody()?.string() ?: "null response")
                         }
                     }
                 }
             }
-
         },
         onGoogleClick = { /* TODO */ },
         onFacebookClick = { /* TODO */ },
         onCreateAccountClick = { navController.navigate("register") },
-        isEmailError = emailError,
+        isUsernameError = usernameError,
         isPasswordError = passwordError
     )
 }
 
 @Composable
 fun LoginScreen(
-    email: String,
+    username: String,
     password: String,
-    onEmailChange: (String) -> Unit,
+    onUsernameChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     onLoginClick: () -> Unit,
     onGoogleClick: () -> Unit,
     onFacebookClick: () -> Unit,
     onCreateAccountClick: () -> Unit,
-    isEmailError: Boolean,
+    isUsernameError: Boolean,
     isPasswordError: Boolean
-) {
+)
+ {
     Surface(
         color = Color.White,
         modifier = Modifier.fillMaxSize()
@@ -138,17 +137,18 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             // 3. Email field
+            // Username field
             OutlinedTextField(
-                value = email,
-                onValueChange = onEmailChange,
+                value = username,
+                onValueChange = onUsernameChange,
                 placeholder = {
                     Text(
-                        text = "Email",
+                        text = "Username",
                         color = Color(0xFF8C8C8C),
                         fontSize = 14.sp
                     )
                 },
-                isError = isEmailError,
+                isError = isUsernameError,
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -164,9 +164,10 @@ fun LoginScreen(
                     focusedTextColor = Color.Black,
                     unfocusedTextColor = Color.Black
                 ),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 textStyle = TextStyle(fontSize = 16.sp, color = Color.Black)
             )
+
             Spacer(modifier = Modifier.height(20.dp))
 
             // 4. Password field
@@ -311,17 +312,17 @@ fun LoginScreen(
             // 8. Primary "Get Started" button pinned to bottom
             Button(
                 onClick = onLoginClick,
-                enabled = email.isNotBlank() && password.isNotBlank(),
+                enabled = username.isNotBlank() && password.isNotBlank(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp),
                 shape = RoundedCornerShape(30.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (email.isNotBlank() && password.isNotBlank())
+                    containerColor = if (username.isNotBlank() && password.isNotBlank())
                         Color(0xFF6A2FFA)
                     else
                         Color(0xFFF0F0F0),
-                    contentColor = if (email.isNotBlank() && password.isNotBlank())
+                    contentColor = if (username.isNotBlank() && password.isNotBlank())
                         Color.White
                     else
                         Color(0xFF8C8C8C)
