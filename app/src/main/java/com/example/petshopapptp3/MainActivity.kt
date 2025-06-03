@@ -12,8 +12,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
 import com.example.petshopapptp3.ui.screens.AccountSettingsScreen
+import com.example.petshopapptp3.ui.screens.AddNewPaymentScreen
 import com.example.petshopapptp3.ui.screens.CartScreen
-import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
+//import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 import com.example.petshopapptp3.ui.screens.ChangePasswordScreen
 import com.example.petshopapptp3.ui.screens.CheckoutScreen
 import com.example.petshopapptp3.ui.screens.ForgotPasswordScreen
@@ -31,6 +32,7 @@ import com.example.petshopapptp3.ui.screens.NotificationsSettingsScreen
 import com.example.petshopapptp3.ui.screens.SearchScreen
 import com.example.petshopapptp3.ui.screens.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
+import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -75,6 +77,7 @@ fun AppNavigation() {
             ProductDetailScreen(navController)
         }
         composable("cart") { CartScreen(navController) }
+        composable("addPayment") { AddNewPaymentScreen(navController) }
         composable("checkout") { CheckoutScreen(navController) }
         composable("paymentSuccess") { PaymentSuccessScreen(navController) }
         composable("profile") { ProfileScreen(navController) }

@@ -8,6 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+
+import androidx.compose.ui.unit.dp
+
+
+
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -15,9 +23,31 @@ fun LoginScreen(navController: NavHostController) {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "Pantalla: Login",
-            style = MaterialTheme.typography.headlineSmall
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.align(Alignment.Center)
+        ) {
+            Text(
+                text = "Pantalla: Login",
+                style = MaterialTheme.typography.headlineSmall
+            )
+            Button(
+                onClick = { navController.navigate("addPayment") }
+            ) {
+                Text(text = "payment")
+            }
+            Button(
+                onClick = { navController.navigate("changePassword") }
+            ) {
+                Text(text = "password")
+            }
+            Button(
+                onClick = { navController.navigate("changeEmail") }
+            ) {
+                Text(text = "email")
+            }
+        }
     }
 }
+
