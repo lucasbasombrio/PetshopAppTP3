@@ -7,12 +7,12 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [FavoriteProductEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun favoriteDao(): FavoriteProductDao
+    abstract fun favoriteProductDao(): FavoriteProductDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase {
+        fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -25,3 +25,4 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+

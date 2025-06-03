@@ -16,7 +16,9 @@ interface FavoriteProductDao {
 
     @Query("SELECT EXISTS(SELECT 1 FROM favorites WHERE id = :id)")
     fun exists(id: Int): Boolean
+
 }
+
 
 
 

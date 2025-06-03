@@ -1,25 +1,33 @@
 package com.example.petshopapptp3.data.repository
 
-import android.content.Context
-import com.example.petshopapptp3.data.local.AppDatabase
+import com.example.petshopapptp3.data.local.FavoriteProductDao
 import com.example.petshopapptp3.data.local.FavoriteProductEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class FavoriteRepository(context: Context) {
-    private val dao = AppDatabase.getDatabase(context).favoriteDao()
+class FavoriteRepository(private val dao: FavoriteProductDao) {
 
-    suspend fun addFavorite(product: FavoriteProductEntity) {
-        dao.insert(product)
+    suspend fun addFavorite(favorite: FavoriteProductEntity) {
+        withContext(Dispatchers.IO) {
+            dao.insert(favorite)
+        }
     }
 
-    suspend fun removeFavorite(product: FavoriteProductEntity) {
-        dao.delete(product)
+    suspend fun removeFavorite(favorite: FavoriteProductEntity) {
+        withContext(Dispatchers.IO) {
+            dao.delete(favorite)
+        }
     }
 
-    suspend fun isFavorite(productId: Int): Boolean {
-        return dao.exists(productId)
+    suspend fun isFavorite(id: Int): Boolean {
+        return withContext(Dispatchers.IO) {
+            dao.exists(id)
+        }
     }
 
     suspend fun getAllFavorites(): List<FavoriteProductEntity> {
-        return dao.getAll()
+        return withContext(Dispatchers.IO) {
+            dao.getAll()
+        }
     }
 }

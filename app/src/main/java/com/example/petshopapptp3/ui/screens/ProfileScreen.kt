@@ -1,3 +1,4 @@
+// ProfileScreen.kt
 package com.example.petshopapptp3.ui.screens
 
 import androidx.compose.foundation.Image
@@ -59,11 +60,10 @@ fun ProfileScreen(navController: NavHostController) {
         if (isSellerMode) {
             SellerModeUI()
         } else {
-            UserModeUI()
+            UserModeUI(navController)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        BottomBar()
     }
 }
 
@@ -153,9 +153,8 @@ fun SellerModeUI() {
     }
 }
 
-
 @Composable
-fun UserModeUI() {
+fun UserModeUI(navController: NavHostController) {
     var savedProducts by remember { mutableStateOf<List<Product>>(emptyList()) }
     val coroutineScope = rememberCoroutineScope()
 
@@ -165,6 +164,45 @@ fun UserModeUI() {
         }
     }
 
+    UserBanner()
+
+    Spacer(modifier = Modifier.height(8.dp))
+    Text(text = "Abduldul", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+
+    Spacer(modifier = Modifier.height(16.dp))
+    Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
+        FilterButton("Saved", true)
+        Button(
+            onClick = { navController.navigate("settings") },
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFE0E0E0),
+                contentColor = Color(0xFF666666)
+            ),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp)
+        ) {
+            Text(text = "Edit Profile", fontSize = 14.sp)
+        }
+    }
+
+    LazyRow(
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        items(savedProducts) { product ->
+            ProductCard(
+                title = product.title,
+                price = "$${product.price}",
+                imageUrl = product.thumbnail
+            )
+        }
+    }
+
+    BottomBar()
+}
+
+@Composable
+fun UserBanner() {
     Image(
         painter = painterResource(id = R.drawable.bg_profile_user),
         contentDescription = null,
@@ -187,30 +225,7 @@ fun UserModeUI() {
             modifier = Modifier.size(100.dp)
         )
     }
-
-    Spacer(modifier = Modifier.height(8.dp))
-    Text(text = "Abduldul", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-
-    Spacer(modifier = Modifier.height(16.dp))
-    Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-        FilterButton("Saved", true)
-        FilterButton("Edit Profile", false)
-    }
-
-    LazyRow(
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        items(savedProducts) { product ->
-            ProductCard(
-                title = product.title,
-                price = "$${product.price}",
-                imageUrl = product.thumbnail
-            )
-        }
-    }
 }
-
 
 @Composable
 fun ProductCard(title: String, price: String, imageUrl: String) {

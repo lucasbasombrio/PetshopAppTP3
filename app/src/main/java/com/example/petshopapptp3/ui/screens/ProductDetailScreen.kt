@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.petshopapptp3.data.local.AppDatabase
 import com.example.petshopapptp3.data.local.FavoriteProductEntity
 import com.example.petshopapptp3.data.model.ProductDetailResponse
 import com.example.petshopapptp3.data.repository.FavoriteRepository
@@ -31,7 +32,10 @@ import kotlin.random.Random
 fun ProductDetailScreen(navController: NavHostController) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val repo = remember { FavoriteRepository(context) }
+
+    // ✅ Instancia correcta del DAO y repositorio
+    val dao = remember { AppDatabase.getInstance(context).favoriteProductDao() }
+    val repo = remember { FavoriteRepository(dao) }
 
     var product by remember { mutableStateOf<ProductDetailResponse?>(null) }
     var isFavorite by remember { mutableStateOf(false) }
