@@ -1,7 +1,6 @@
 package com.example.petshopapptp3
 
 import android.os.Bundle
-
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,8 +13,9 @@ import androidx.navigation.compose.*
 import androidx.navigation.navArgument
 import com.example.petshopapptp3.ui.screens.AccountSettingsScreen
 import com.example.petshopapptp3.ui.screens.AddNewPaymentScreen
+import com.example.petshopapptp3.ui.screens.BestSellerScreen
 import com.example.petshopapptp3.ui.screens.CartScreen
-//import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
+import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 import com.example.petshopapptp3.ui.screens.ChangePasswordScreen
 import com.example.petshopapptp3.ui.screens.CheckoutScreen
 import com.example.petshopapptp3.ui.screens.ForgotPasswordScreen
@@ -61,12 +61,8 @@ fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "home") {
         composable("onboarding") { OnboardingScreen(navController) }
-        composable("login") { LoginScreenWithNav(navController) }
-
-        composable("register") {
-
-            RegisterScreenWithNav(navController)
-        }
+        composable("login") { LoginScreen(navController) }
+        composable("register") { RegisterScreen(navController) }
         composable("forgotPassword") { ForgotPasswordScreen(navController) }
         composable("home") { HomeScreen(navController) }
         composable("settings") {
@@ -102,5 +98,13 @@ fun AppNavigation() {
         composable("search") {
             SearchScreen(onBack = { navController.popBackStack() })
         }
+        composable("best_seller") {
+            BestSellerScreen(navController = navController)
+        }
+        composable("productDetail") {
+            ProductDetailScreen(navController = navController)
+        }
+
+
     }
 }
