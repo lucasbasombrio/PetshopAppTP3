@@ -12,6 +12,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
 import com.example.petshopapptp3.ui.screens.AccountSettingsScreen
+import com.example.petshopapptp3.ui.screens.BestSellerScreen
 import com.example.petshopapptp3.ui.screens.CartScreen
 import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 import com.example.petshopapptp3.ui.screens.ChangePasswordScreen
@@ -76,5 +77,13 @@ fun AppNavigation() {
         composable("search") {
             SearchScreen(onBack = { navController.popBackStack() })
         }
+        composable("best_seller") {
+            BestSellerScreen(navController = navController)
+        }
+        composable("productDetail") {
+            ProductDetailScreen(navController = navController)
+        }
+
+
     }
 }

@@ -4,8 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -14,7 +12,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -28,20 +25,15 @@ import com.example.petshopapptp3.R
 import com.example.petshopapptp3.ui.components.BottomNavigationBar
 import com.example.petshopapptp3.ui.components.IconBox
 import com.example.petshopapptp3.ui.components.ProductCard
+import com.example.petshopapptp3.ui.components.SimpleProduct
 import com.example.petshopapptp3.ui.theme.PetshopAppTP3Theme
-
-data class Product(
-    val name: String,
-    val price: String,
-    val imageUrl: String
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavHostController) {
     val bestSellers = listOf(
-        Product("RC Kitten", "$20,99", ""),
-        Product("RC Persian", "$22,99", "")
+        SimpleProduct("RC Kitten", "$20,99"),
+        SimpleProduct("RC Persian", "$22,99")
     )
     val bottomSheetState = rememberModalBottomSheetState()
     var showSheet by remember { mutableStateOf(false) }
@@ -49,13 +41,13 @@ fun HomeScreen(navController: NavHostController) {
     Scaffold(
         bottomBar = {
             BottomNavigationBar(
-                selectedIndex = 0, // Estamos en la pantalla Home
+                selectedIndex = 0,
                 onTabSelected = { index ->
                     when (index) {
                         0 -> navController.navigate("home")
                         1 -> navController.navigate("notifications")
                         2 -> navController.navigate("cart")
-                        3 -> navController.navigate("profile") // Redirige al perfil
+                        3 -> navController.navigate("profile")
                     }
                 }
             )
@@ -70,7 +62,6 @@ fun HomeScreen(navController: NavHostController) {
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Header
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -109,7 +100,6 @@ fun HomeScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Banner
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -125,41 +115,12 @@ fun HomeScreen(navController: NavHostController) {
                         .height(140.dp)
                 ) {
                     Box(modifier = Modifier.fillMaxSize()) {
-                        Box(
-                            modifier = Modifier
-                                .size(60.dp)
-                                .offset(x = (65).dp, y = (-30).dp)
-                                .background(Color(0xFFFEB47A).copy(alpha = 0.55f), shape = CircleShape)
-                                .align(Alignment.TopStart)
-                        )
-                        Box(
-                            modifier = Modifier
-                                .size(60.dp)
-                                .offset(x = 10.dp, y = (-25).dp)
-                                .background(Color(0xFFFEB47A).copy(alpha = 0.55f), shape = CircleShape)
-                                .align(Alignment.TopEnd)
-                        )
-                        Box(
-                            modifier = Modifier
-                                .size(120.dp)
-                                .offset(x = (-40).dp, y = 20.dp)
-                                .background(Color(0xFFFEB47A).copy(alpha = 0.55f), shape = CircleShape)
-                                .align(Alignment.BottomStart)
-                        )
-                        Box(
-                            modifier = Modifier
-                                .size(60.dp)
-                                .offset(x = (90).dp, y = 65.dp)
-                                .background(Color(0xFFFEB47A).copy(alpha = 0.55f), shape = CircleShape)
-                                .align(Alignment.CenterStart)
-                        )
-
                         Column(
                             modifier = Modifier
                                 .fillMaxHeight()
                                 .padding(end = 20.dp)
                                 .align(Alignment.CenterEnd),
-                            verticalArrangement = Arrangement.Center,
+                            verticalArrangement = Arrangement.Center
                         ) {
                             Text(
                                 text = "Royal Canin\nAdult Pomeraniann",
@@ -191,7 +152,6 @@ fun HomeScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Category
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -231,7 +191,6 @@ fun HomeScreen(navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Best Seller
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -245,7 +204,9 @@ fun HomeScreen(navController: NavHostController) {
                     text = "View All",
                     style = MaterialTheme.typography.labelLarge,
                     color = Color(0xFF8E60F8),
-                    modifier = Modifier.clickable { }
+                    modifier = Modifier.clickable {
+                        navController.navigate("best_seller")
+                    }
                 )
             }
 
@@ -256,18 +217,13 @@ fun HomeScreen(navController: NavHostController) {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 bestSellers.forEach { product ->
-                    ProductCard(product)
+                    ProductCard(product = product) {
+                        navController.navigate("productDetail")
+                    }
                 }
             }
-            Button(
-                onClick = { navController.navigate("login") },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Ir a Login (prueba)")
-            }
+
             Spacer(modifier = Modifier.height(32.dp))
-
-
         }
     }
 
