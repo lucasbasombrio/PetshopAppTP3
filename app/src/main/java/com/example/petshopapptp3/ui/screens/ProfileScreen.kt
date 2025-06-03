@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -22,8 +23,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.petshopapptp3.R
-import com.example.petshopapptp3.data.Product
-import com.example.petshopapptp3.data.ProductService
+import com.example.petshopapptp3.data.local.AppDatabase
+import com.example.petshopapptp3.data.local.FavoriteProductEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
 
 @Composable
@@ -85,82 +88,20 @@ fun ModeButton(text: String, selected: Boolean, onClick: () -> Unit) {
 
 @Composable
 fun SellerModeUI() {
-    var sellerProducts by remember { mutableStateOf<List<Product>>(emptyList()) }
-    val coroutineScope = rememberCoroutineScope()
-
-    LaunchedEffect(Unit) {
-        coroutineScope.launch {
-            sellerProducts = ProductService.getProducts()
-        }
-    }
-
-    Image(
-        painter = painterResource(id = R.drawable.bg_profile_seller),
-        contentDescription = null,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(140.dp)
-    )
-
-    Box(
-        modifier = Modifier
-            .offset(y = (-40).dp)
-            .size(100.dp)
-            .clip(CircleShape)
-            .background(Color.LightGray),
-        contentAlignment = Alignment.Center
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.logo_seller),
-            contentDescription = "Seller Logo",
-            modifier = Modifier.size(40.dp)
-        )
-        Image(
-            painter = painterResource(id = R.drawable.p_logo),
-            contentDescription = "P inside logo",
-            modifier = Modifier.size(20.dp)
-        )
-    }
-
-    Spacer(modifier = Modifier.height(8.dp))
-    Text(text = "Pittashop", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-
-    Spacer(modifier = Modifier.height(16.dp))
-    Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-        StatColumn("109", "Followers")
-        StatColumn("992", "Following")
-        StatColumn("80", "Sales")
-    }
-
-    Spacer(modifier = Modifier.height(16.dp))
-    Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-        FilterButton("Product", true)
-        FilterButton("Sold", false)
-        FilterButton("Stats", false)
-    }
-
-    LazyRow(
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        items(sellerProducts) { product ->
-            ProductCard(
-                title = product.title,
-                price = "$${product.price}",
-                imageUrl = product.thumbnail
-            )
-        }
-    }
+    Text("Modo vendedor aún no implementado")
 }
 
 @Composable
 fun UserModeUI(navController: NavHostController) {
-    var savedProducts by remember { mutableStateOf<List<Product>>(emptyList()) }
+    val context = LocalContext.current
+    var savedProducts by remember { mutableStateOf<List<FavoriteProductEntity>>(emptyList()) }
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         coroutineScope.launch {
-            savedProducts = ProductService.getProducts()
+            val db = AppDatabase.getInstance(context)
+            val dao = db.favoriteProductDao()
+            savedProducts = withContext(Dispatchers.IO) { dao.getAll() }
         }
     }
 

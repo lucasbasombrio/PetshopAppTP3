@@ -38,6 +38,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 import com.example.petshopapptp3.ui.screens.PrivacySettingsScreen
 import com.example.petshopapptp3.ui.screens.SettingsSecurityScreen
+import com.example.petshopapptp3.ui.screens.FaqScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -103,6 +104,9 @@ fun AppNavigation() {
         }
         composable("productDetail") {
             ProductDetailScreen(navController = navController)
+        }
+        composable("faq") {
+            FaqScreen(navController = navController)
         }
 
 
