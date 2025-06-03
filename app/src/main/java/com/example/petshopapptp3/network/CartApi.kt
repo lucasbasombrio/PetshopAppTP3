@@ -1,4 +1,4 @@
-package com.example.petshopapptp3.data.network
+package com.example.petshopapptp3.network
 
 import com.example.petshopapptp3.data.model.CartResponse
 import retrofit2.http.GET

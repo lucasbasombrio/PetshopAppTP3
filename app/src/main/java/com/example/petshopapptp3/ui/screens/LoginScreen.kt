@@ -34,7 +34,7 @@ import kotlinx.coroutines.withContext
 
 
 @Composable
-fun LoginScreenWithNav(navController: NavController) {
+fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var emailError by remember { mutableStateOf(false) }

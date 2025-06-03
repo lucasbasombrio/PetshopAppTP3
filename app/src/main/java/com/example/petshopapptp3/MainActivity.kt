@@ -20,14 +20,14 @@ import com.example.petshopapptp3.ui.screens.ChangePasswordScreen
 import com.example.petshopapptp3.ui.screens.CheckoutScreen
 import com.example.petshopapptp3.ui.screens.ForgotPasswordScreen
 import com.example.petshopapptp3.ui.screens.HomeScreen
-import com.example.petshopapptp3.ui.screens.LoginScreenWithNav
 import com.example.petshopapptp3.ui.screens.LoginScreen
-import com.example.petshopapptp3.ui.screens.RegisterScreenWithNav
+
+import com.example.petshopapptp3.ui.screens.RegisterScreen
 import com.example.petshopapptp3.ui.screens.OnboardingScreen
 import com.example.petshopapptp3.ui.screens.PaymentSuccessScreen
 import com.example.petshopapptp3.ui.screens.ProductDetailScreen
 import com.example.petshopapptp3.ui.screens.ProfileScreen
-import com.example.petshopapptp3.ui.screens.RegisterScreen
+
 import com.example.petshopapptp3.ui.screens.SecuritySettingsScreen
 import com.example.petshopapptp3.ui.theme.PetshopAppTP3Theme
 import com.example.petshopapptp3.ui.screens.NotificationsScreen
@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "home") {
+    NavHost(navController = navController, startDestination = "onboarding") {
         composable("onboarding") { OnboardingScreen(navController) }
         composable("login") { LoginScreen(navController) }
         composable("register") { RegisterScreen(navController) }

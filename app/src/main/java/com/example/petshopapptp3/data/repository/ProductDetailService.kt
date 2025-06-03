@@ -1,7 +1,7 @@
 package com.example.petshopapptp3.data.repository
 
 import com.example.petshopapptp3.data.model.ProductDetailResponse
-import com.example.petshopapptp3.data.network.ProductApi
+import com.example.petshopapptp3.network.ProductApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

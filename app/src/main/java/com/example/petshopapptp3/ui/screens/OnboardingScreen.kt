@@ -15,19 +15,22 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun OnboardingScreen(navController: NavHostController) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    )  {
-            Text(
-                text = "Pantalla: Login",
-                style = MaterialTheme.typography.headlineSmall
-            )
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(32.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Pantalla: Onboarding",
+            style = MaterialTheme.typography.headlineSmall
+        )
 
+        Spacer(modifier = Modifier.height(24.dp))
 
+        Button(onClick = { navController.navigate("login") }) {
+            Text("Ir al Login")
+        }
     }
-
-
-
-
 }

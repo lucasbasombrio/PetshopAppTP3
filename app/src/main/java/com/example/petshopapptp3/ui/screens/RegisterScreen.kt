@@ -26,7 +26,7 @@ import androidx.navigation.NavController
 import kotlinx.coroutines.withContext
 
 @Composable
-fun RegisterScreenWithNav(navController: NavController) {
+fun RegisterScreen(navController: NavController) {
     val context = LocalContext.current
 
     // Local state for the three fields + checkbox + tracking submit attempt
