@@ -12,10 +12,12 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -99,7 +101,8 @@ fun HomeScreen(navController: NavHostController) {
             }
 
             Spacer(modifier = Modifier.height(24.dp))
-
+//banner
+            // Banner con fondo violeta (#7140FD) y círculos decorativos rosados
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -115,17 +118,60 @@ fun HomeScreen(navController: NavHostController) {
                         .height(140.dp)
                 ) {
                     Box(modifier = Modifier.fillMaxSize()) {
+
+                        // 🟣 Círculo arriba izquierda (sobresale)
+                        Box(
+                            modifier = Modifier
+                                .size(60.dp)
+                                .offset(x = (70).dp, y = (-20).dp)
+                                .background(Color(0xFFFEB47A).copy(alpha = 0.65f), shape = CircleShape)
+                                .align(Alignment.TopStart)
+                        )
+
+                        // 🟣 Círculo arriba derecha (sobresale)
+                        Box(
+                            modifier = Modifier
+                                .size(70.dp)
+                                .offset(x = 10.dp, y = (-25).dp)
+                                .background(Color(0xFFFEB47A).copy(alpha = 0.65f), shape = CircleShape)
+                                .align(Alignment.TopEnd)
+                        )
+
+                        // 🟣 Círculo abajo izquierda
+                        Box(
+                            modifier = Modifier
+                                .size(100.dp)
+                                .offset(x = (-30).dp, y = 15.dp)
+                                .background(Color(0xFFFEB47A).copy(alpha = 0.65f), shape = CircleShape)
+                                .align(Alignment.BottomStart)
+                        )
+
+                        // 🟣 Círculo centro izquierda (dentro)
+                        Box(
+                            modifier = Modifier
+                                .size(70.dp)
+                                .offset(x = (90).dp, y = (70).dp)
+                                .background(Color(0xFFFEB47A).copy(alpha = 0.65f), shape = CircleShape)
+                                .align(Alignment.CenterStart)
+                        )
+
+                        // Texto a la derecha
+                        val textWidth = 180.dp
+
                         Column(
                             modifier = Modifier
                                 .fillMaxHeight()
                                 .padding(end = 20.dp)
                                 .align(Alignment.CenterEnd),
-                            verticalArrangement = Arrangement.Center
+                            verticalArrangement = Arrangement.Center,
+                            //horizontalAlignment = Alignment.End
                         ) {
                             Text(
                                 text = "Royal Canin\nAdult Pomeraniann",
                                 color = Color.White,
                                 fontSize = 16.sp,
+                                //textAlign = TextAlign.End,
+                                //modifier = Modifier.widthIn(max = textWidth),
                                 fontWeight = FontWeight.Bold
                             )
                             Spacer(modifier = Modifier.height(4.dp))
@@ -134,21 +180,27 @@ fun HomeScreen(navController: NavHostController) {
                                 color = Color.White,
                                 fontSize = 12.sp,
                                 lineHeight = 14.sp
+                                //textAlign = TextAlign.End,
+                                // modifier = Modifier.widthIn(max = textWidth)
                             )
                         }
+
                     }
                 }
 
+                // Imagen en frente del card
                 Image(
                     painter = painterResource(id = R.drawable.propaganda_producto),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(300.dp)
+                        .size(240.dp)
                         .align(Alignment.CenterStart)
-                        .offset(x = (-60).dp),
+                        .offset(x = (-20).dp),
                     contentScale = ContentScale.Fit
                 )
             }
+
+
 
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -216,12 +268,44 @@ fun HomeScreen(navController: NavHostController) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                bestSellers.forEach { product ->
-                    ProductCard(product = product) {
-                        navController.navigate("productDetail")
+                repeat(2) {
+                    Column(
+                        modifier = Modifier
+                            .width(150.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(Color.White)
+                            .padding(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.image_22),
+                            contentDescription = "Product Image",
+                            modifier = Modifier
+                                .height(100.dp)
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(8.dp)),
+                            contentScale = ContentScale.Fit
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text("RC Kitten", fontWeight = FontWeight.Bold)
+                        Text("$20,99", color = Color.Gray)
+
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.End)
+                                .size(24.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFF814DFF))
+                                .clickable { navController.navigate("productDetail") },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(Icons.Default.Add, contentDescription = "Add", tint = Color.White, modifier = Modifier.size(16.dp))
+                        }
                     }
                 }
             }
+
 
             Spacer(modifier = Modifier.height(32.dp))
         }
@@ -289,5 +373,5 @@ fun FilterChip(text: String, selected: Boolean = false) {
 fun HomeScreenPreview() {
     PetshopAppTP3Theme {
         HomeScreen(navController = rememberNavController())
-    }
+        }
 }
