@@ -33,6 +33,7 @@ import com.example.petshopapptp3.ui.screens.SearchScreen
 import com.example.petshopapptp3.ui.screens.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
+import com.example.petshopapptp3.ui.screens.PrivacySettingsScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -69,7 +70,7 @@ fun AppNavigation() {
         composable("notifications_settings") {
             NotificationsSettingsScreen(navController)
         }
-
+        composable("privacy_settings") { PrivacySettingsScreen(navController) }
         composable(
             route = "product/{productId}",
             arguments = listOf(navArgument("productId") { type = NavType.StringType })

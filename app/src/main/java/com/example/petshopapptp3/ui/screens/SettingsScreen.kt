@@ -47,7 +47,8 @@ fun SettingsScreen(navController: NavHostController) {
         SettingsItem("Notification", Icons.Default.Notifications) { navController.navigate("notifications_settings") }
 
         //SettingsItem("Payment Method", Icons.Default.Payment) { /* navController.navigate("payment") */ }
-        SettingsItem("Privacy", Icons.Default.Info) { /* navController.navigate("privacy") */ }
+        SettingsItem("Privacy", Icons.Default.Info) { navController.navigate("privacy_settings") }
+
         SettingsItem("Security", Icons.Default.Lock) { /* navController.navigate("security") */ }
 
         Spacer(modifier = Modifier.height(16.dp))
