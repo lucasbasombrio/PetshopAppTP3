@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -23,7 +24,11 @@ import coil.compose.AsyncImage
 import com.example.petshopapptp3.R
 import com.example.petshopapptp3.data.Product
 import com.example.petshopapptp3.data.ProductService
+import com.example.petshopapptp3.data.local.AppDatabase
+import com.example.petshopapptp3.data.local.FavoriteProductEntity
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import com.example.petshopapptp3.ui.components.BottomNavigationBar
 
 @Composable
@@ -172,12 +177,15 @@ fun SellerModeUI() {
 
 @Composable
 fun UserModeUI(navController: NavHostController) {
-    var savedProducts by remember { mutableStateOf<List<Product>>(emptyList()) }
+    val context = LocalContext.current
+    var savedProducts by remember { mutableStateOf<List<FavoriteProductEntity>>(emptyList()) }
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         coroutineScope.launch {
-            savedProducts = ProductService.getProducts()
+            val db = AppDatabase.getInstance(context)
+            val dao = db.favoriteProductDao()
+            savedProducts = withContext(Dispatchers.IO) { dao.getAll() }
         }
     }
 
@@ -190,7 +198,6 @@ fun UserModeUI(navController: NavHostController) {
     Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
         FilterButton("Saved", true)
         FilterButton("Edit Profile", false, onClick = { navController.navigate("settings") })
-
     }
 
     LazyRow(
@@ -279,4 +286,3 @@ fun FilterButton(text: String, selected: Boolean, onClick: () -> Unit = {}) {
         Text(text = text, fontSize = 14.sp)
     }
 }
-
