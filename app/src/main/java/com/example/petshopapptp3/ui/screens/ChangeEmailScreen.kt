@@ -58,7 +58,7 @@ fun ChangeEmailScreen(navController: NavController) {
             Spacer(modifier = Modifier.weight(1f))
 
             Button(
-                onClick = { navController.navigate("securitySettings") },
+                onClick = { navController.navigate("settingsSecurity") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp),

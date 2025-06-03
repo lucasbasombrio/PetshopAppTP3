@@ -57,13 +57,13 @@ fun SettingsSecurityScreen(navController: NavHostController) {
         SecurityOption(
             text = "Change Password",
             icon = Icons.Default.Lock,
-            onClick = { /* navController.navigate("ChangePasswordScreen") */ }
+            onClick = {  navController.navigate("changePassword")  }
         )
 
         SecurityOption(
             text = "Change Email",
             icon = Icons.Default.Email,
-            onClick = { /* navController.navigate("ChangeEmailScreen") */ }
+            onClick = {  navController.navigate("changeEmail")  }
         )
     }
 }

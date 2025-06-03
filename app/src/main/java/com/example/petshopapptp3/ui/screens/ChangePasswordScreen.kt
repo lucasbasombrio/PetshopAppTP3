@@ -74,7 +74,7 @@ fun ChangePasswordScreen(navController: NavController) {
 
             Button(
                 onClick = {
-                    navController.navigate("securitySettings")
+                    navController.navigate("settingsSecurity")
                 },
                 modifier = Modifier
                     .fillMaxWidth()

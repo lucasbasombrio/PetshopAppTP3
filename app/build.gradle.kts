@@ -59,7 +59,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation("androidx.compose.runtime:runtime:1.8.2")
     implementation("androidx.compose.runtime:runtime")
-
+    implementation("io.coil-kt:coil-compose:2.2.2")
 
 
 

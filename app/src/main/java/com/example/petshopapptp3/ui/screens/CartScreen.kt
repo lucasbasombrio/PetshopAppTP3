@@ -108,7 +108,7 @@ fun CartScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = { /* Confirmar compra o seguir */ },
+                onClick = { navController.navigate("addPayment") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
