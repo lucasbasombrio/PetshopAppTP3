@@ -41,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.0"
+        kotlinCompilerExtensionVersion = "1.6.0"
     }
 }
 
@@ -57,6 +57,12 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.ui)
+    implementation("androidx.compose.runtime:runtime:1.8.2")
+    implementation("androidx.compose.runtime:runtime")
+
+
+
+
     //Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
