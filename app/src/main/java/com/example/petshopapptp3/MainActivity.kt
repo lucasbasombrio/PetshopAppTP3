@@ -34,6 +34,7 @@ import com.example.petshopapptp3.ui.screens.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 import com.example.petshopapptp3.ui.screens.PrivacySettingsScreen
+import com.example.petshopapptp3.ui.screens.SettingsSecurityScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -67,6 +68,8 @@ fun AppNavigation() {
         composable("account_settings") {
             AccountSettingsScreen(navController)
         }
+        composable("settingsSecurity") { SettingsSecurityScreen(navController) }
+
         composable("notifications_settings") {
             NotificationsSettingsScreen(navController)
         }
