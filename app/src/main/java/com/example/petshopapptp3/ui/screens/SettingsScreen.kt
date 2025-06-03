@@ -46,7 +46,7 @@ fun SettingsScreen(navController: NavHostController) {
         SettingsItem("Address", Icons.Default.Home) { /* navController.navigate("address") */ }
         SettingsItem("Notification", Icons.Default.Notifications) { navController.navigate("notifications_settings") }
 
-        //SettingsItem("Payment Method", Icons.Default.Payment) { /* navController.navigate("payment") */ }
+        SettingsItem("Payment Method", Icons.Default.ShoppingCart) { /* navController.navigate("payment") */ }
         SettingsItem("Privacy", Icons.Default.Info) { navController.navigate("privacy_settings") }
 
         SettingsItem("Security", Icons.Default.Lock) {
@@ -60,7 +60,7 @@ fun SettingsScreen(navController: NavHostController) {
         Text(text = "Help", fontWeight = FontWeight.Bold, fontSize = 16.sp)
 
         SettingsItem("Contact Us", Icons.Default.Phone) { /* navController.navigate("contact") */ }
-       // SettingsItem("FAQ", Icons.Default.Description) { /* navController.navigate("faq") */ }
+       //SettingsItem("FAQ", Icons.Sharp. { /* navController.navigate("faq") */ }
 
         Spacer(modifier = Modifier.weight(1f))
 

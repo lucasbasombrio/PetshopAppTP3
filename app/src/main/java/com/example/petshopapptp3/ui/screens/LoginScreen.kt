@@ -283,7 +283,7 @@ fun LoginScreen(
             }
 
             // Push the create-account row and primary button to the bottom:
-            Spacer(modifier = Modifier.height(250.dp))
+            Spacer(modifier = Modifier.height(100.dp))
 
             // 7. "Don't have an account? Create Account" just above the Get Started button
             Row(
