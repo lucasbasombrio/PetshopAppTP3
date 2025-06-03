@@ -15,8 +15,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun ForgotPasswordEmailScreen(navController: NavController) {
-    var email by remember { mutableStateOf("") }
+fun ResetPasswordScreen(navController: NavController) {
+    var newPassword by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -41,16 +42,25 @@ fun ForgotPasswordEmailScreen(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(32.dp))
             OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                placeholder = { Text("Email") },
+                value = newPassword,
+                onValueChange = { newPassword = it },
+                placeholder = { Text("New Password") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                shape = RoundedCornerShape(12.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedTextField(
+                value = confirmPassword,
+                onValueChange = { confirmPassword = it },
+                placeholder = { Text("Confirm Password") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 shape = RoundedCornerShape(12.dp)
             )
         }
 
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.weight(1f)) // Empuja los botones al fondo
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             TextButton(onClick = { navController.navigate("login") }) {
@@ -58,14 +68,14 @@ fun ForgotPasswordEmailScreen(navController: NavController) {
                 Text("Login", fontWeight = FontWeight.Bold)
             }
             Button(
-                onClick = { navController.navigate("resetPassword") },
+                onClick = { /* Lógica para resetear contraseña */ },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
                 shape = RoundedCornerShape(28.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF7B61FF))
             ) {
-                Text("Next", color = Color.White)
+                Text("Reset Password", color = Color.White)
             }
         }
     }
@@ -74,7 +84,8 @@ fun ForgotPasswordEmailScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun ForgotPasswordEmailScreenPreview() {
+fun ResetPasswordScreenPreview() {
     val navController = rememberNavController()
-    ForgotPasswordEmailScreen(navController = navController)
+    ResetPasswordScreen(navController = navController)
 }
+
