@@ -189,17 +189,8 @@ fun UserModeUI(navController: NavHostController) {
     Spacer(modifier = Modifier.height(16.dp))
     Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
         FilterButton("Saved", true)
-        Button(
-            onClick = { navController.navigate("settings") },
-            shape = RoundedCornerShape(10.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFE0E0E0),
-                contentColor = Color(0xFF666666)
-            ),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp)
-        ) {
-            Text(text = "Edit Profile", fontSize = 14.sp)
-        }
+        FilterButton("Edit Profile", false, onClick = { navController.navigate("settings") })
+
     }
 
     LazyRow(
@@ -275,9 +266,9 @@ fun StatColumn(value: String, label: String) {
 }
 
 @Composable
-fun FilterButton(text: String, selected: Boolean) {
+fun FilterButton(text: String, selected: Boolean, onClick: () -> Unit = {}) {
     Button(
-        onClick = { },
+        onClick = onClick,
         shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = if (selected) Color(0xFF814DFF) else Color(0xFFE0E0E0),
@@ -288,3 +279,4 @@ fun FilterButton(text: String, selected: Boolean) {
         Text(text = text, fontSize = 14.sp)
     }
 }
+
