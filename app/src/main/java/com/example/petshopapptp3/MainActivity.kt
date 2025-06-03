@@ -18,7 +18,7 @@ import com.example.petshopapptp3.ui.screens.CartScreen
 import com.example.petshopapptp3.ui.screens.ChangeEmailScreen
 import com.example.petshopapptp3.ui.screens.ChangePasswordScreen
 import com.example.petshopapptp3.ui.screens.CheckoutScreen
-import com.example.petshopapptp3.ui.screens.ForgotPasswordScreen
+import com.example.petshopapptp3.ui.screens.ForgotPasswordEmailScreen
 import com.example.petshopapptp3.ui.screens.HomeScreen
 import com.example.petshopapptp3.ui.screens.LoginScreen
 
@@ -63,7 +63,8 @@ fun AppNavigation() {
         composable("onboarding") { OnboardingScreen(navController) }
         composable("login") { LoginScreen(navController) }
         composable("register") { RegisterScreen(navController) }
-        composable("forgotPassword") { ForgotPasswordScreen(navController) }
+        composable("forgotPassword") { ForgotPasswordEmailScreen(navController) }
+
         composable("home") { HomeScreen(navController) }
         composable("settings") {
             SettingsScreen(navController)
