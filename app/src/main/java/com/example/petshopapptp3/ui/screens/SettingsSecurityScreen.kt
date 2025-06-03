@@ -1,11 +1,9 @@
 // SettingsSecurityScreen.kt
 package com.example.petshopapptp3.ui.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -29,6 +27,7 @@ fun SettingsSecurityScreen(navController: NavHostController) {
             .fillMaxSize()
             .padding(horizontal = 24.dp, vertical = 24.dp)
     ) {
+        // Encabezado con flecha y título
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
@@ -54,33 +53,37 @@ fun SettingsSecurityScreen(navController: NavHostController) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        SecurityOption(
+        SecurityOptionItem(
             text = "Change Password",
             icon = Icons.Default.Lock,
-            onClick = {  navController.navigate("changePassword")  }
+            onClick = { navController.navigate("changePassword") }
         )
 
-        SecurityOption(
+        SecurityOptionItem(
             text = "Change Email",
             icon = Icons.Default.Email,
-            onClick = {  navController.navigate("changeEmail")  }
+            onClick = { navController.navigate("changeEmail") }
         )
     }
 }
 
 @Composable
-fun SecurityOption(text: String, icon: androidx.compose.ui.graphics.vector.ImageVector, onClick: () -> Unit) {
+fun SecurityOptionItem(
+    text: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    onClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
+            .padding(vertical = 10.dp)
             .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Surface(
-            shape = CircleShape,
-            color = Color(0xFFF2F2F2),
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(40.dp),
+            color = Color(0xFFF5F5F5),
+            shape = CircleShape
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Icon(
@@ -91,16 +94,24 @@ fun SecurityOption(text: String, icon: androidx.compose.ui.graphics.vector.Image
                 )
             }
         }
-        Spacer(modifier = Modifier.width(16.dp))
+
+        Spacer(modifier = Modifier.width(12.dp))
+
         Text(
             text = text,
-            fontSize = 14.sp
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Normal,
+            color = Color.Black
         )
+
         Spacer(modifier = Modifier.weight(1f))
+
         Icon(
-            painter = painterResource(R.drawable.ic_next),
+            painter = painterResource(id = R.drawable.arrow),
             contentDescription = null,
             tint = Color.Black
         )
     }
 }
+
+
