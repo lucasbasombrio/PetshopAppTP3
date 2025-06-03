@@ -44,6 +44,8 @@ fun CustomTopBar(
             onClick = onBackClick,
             modifier = Modifier
                 .size(100.dp)
+                .height(46.dp)
+                .width(46.dp)
                 .align(Alignment.TopStart)
                 .offset(x = -10.dp)
 
@@ -51,7 +53,7 @@ fun CustomTopBar(
             Image(
                 painter = painterResource(id = R.drawable.back),
                 contentDescription = "Back",
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(100.dp).height(46.dp).width(46.dp)
 
             )
         }
