@@ -65,7 +65,7 @@ fun SettingsScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.weight(1f))
 
         OutlinedButton(
-            onClick = { /* logout aún no implementado */ },
+            onClick = {  navController.navigate("login")  },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp),

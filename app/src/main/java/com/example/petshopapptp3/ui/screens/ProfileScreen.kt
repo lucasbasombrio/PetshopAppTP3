@@ -1,4 +1,3 @@
-// ProfileScreen.kt
 package com.example.petshopapptp3.ui.screens
 
 import androidx.compose.foundation.Image
@@ -25,45 +24,63 @@ import com.example.petshopapptp3.R
 import com.example.petshopapptp3.data.Product
 import com.example.petshopapptp3.data.ProductService
 import kotlinx.coroutines.launch
+import com.example.petshopapptp3.ui.components.BottomNavigationBar
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
     var isSellerMode by remember { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFFF9F7FD)),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Row(
-            horizontalArrangement = Arrangement.Center,
+    Scaffold(
+        bottomBar = {
+            BottomNavigationBar(
+                selectedIndex = 3,
+                onTabSelected = { index ->
+                    when (index) {
+                        0 -> navController.navigate("home")
+                        1 -> navController.navigate("notifications")
+                        2 -> navController.navigate("cart")
+                        3 -> navController.navigate("profile")
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        Column(
             modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
+                .fillMaxSize()
+                .padding(innerPadding)
+                .background(Color(0xFFF9F7FD)),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ModeButton(
-                text = "Profile",
-                selected = !isSellerMode,
-                onClick = { isSellerMode = false }
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            ModeButton(
-                text = "Seller Mode",
-                selected = isSellerMode,
-                onClick = { isSellerMode = true }
-            )
-        }
+            Spacer(modifier = Modifier.height(8.dp))
 
-        if (isSellerMode) {
-            SellerModeUI()
-        } else {
-            UserModeUI(navController)
-        }
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+            ) {
+                ModeButton(
+                    text = "Profile",
+                    selected = !isSellerMode,
+                    onClick = { isSellerMode = false }
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                ModeButton(
+                    text = "Seller Mode",
+                    selected = isSellerMode,
+                    onClick = { isSellerMode = true }
+                )
+            }
 
-        Spacer(modifier = Modifier.height(16.dp))
+            if (isSellerMode) {
+                SellerModeUI()
+            } else {
+                UserModeUI(navController)
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+        }
     }
 }
 
@@ -197,8 +214,6 @@ fun UserModeUI(navController: NavHostController) {
             )
         }
     }
-
-    BottomBar()
 }
 
 @Composable
@@ -271,31 +286,5 @@ fun FilterButton(text: String, selected: Boolean) {
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp)
     ) {
         Text(text = text, fontSize = 14.sp)
-    }
-}
-
-@Composable
-fun BottomBar() {
-    Row(
-        horizontalArrangement = Arrangement.SpaceAround,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp)
-            .background(Color.White)
-            .padding(horizontal = 16.dp)
-    ) {
-        IconButton(onClick = { }) {
-            Icon(painter = painterResource(id = R.drawable.ic_home), contentDescription = "Home")
-        }
-        IconButton(onClick = { }) {
-            Icon(painter = painterResource(id = R.drawable.ic_chat), contentDescription = "Favoritos")
-        }
-        IconButton(onClick = { }) {
-            Icon(painter = painterResource(id = R.drawable.ic_cart), contentDescription = "Carrito")
-        }
-        IconButton(onClick = { }) {
-            Icon(painter = painterResource(id = R.drawable.ic_user), contentDescription = "Perfil")
-        }
     }
 }
